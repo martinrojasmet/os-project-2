@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package classes;
 
 import java.util.Random;
@@ -47,25 +43,25 @@ public class Vehicle {
         Random random = new Random();
          
         randomNumber = random.nextInt(100);
-        if (randomNumber < 60) {
+        if (randomNumber < Utils.bodyworkProbability) {
              this.bodyworkGoodQuality = true;
              this.individualQualityCounter++; 
         }
    
         randomNumber = random.nextInt(101);
-        if (randomNumber < 70) {
+        if (randomNumber < Utils.chasisProbability) {
              this.chasisGoodQuality = true;
              this.individualQualityCounter++; 
         }
  
         randomNumber = random.nextInt(101);
-        if (randomNumber < 50) {
+        if (randomNumber < Utils.motorProbability) {
              this.motorGoodQuality = true;
              this.individualQualityCounter++; 
         }
         
         randomNumber = random.nextInt(101);
-        if (randomNumber < 40) {
+        if (randomNumber < Utils.wheelProbability) {
              this.wheelsGoodQuality = true;
              this.individualQualityCounter++; 
         }
@@ -90,6 +86,7 @@ public class Vehicle {
     public void printCarId() {
         System.out.println(this.getId());
     }
+    
     public int getIdNumber() {
         return idNumber;
     }
