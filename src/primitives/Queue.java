@@ -64,13 +64,48 @@ public class Queue<T> {
         }
     }
 
-    public void peak() {
+    public T peak() {
         if (isEmpty()) {
             System.out.println("Queue is empty, underflow condition!!");
+            return null;
         } else {
-            System.out.println("Front index value is: " + items[front]);
+            return items[front];
         }
     }
+
+    public int getLen() {
+        return len;
+    }
+
+    public void setLen(int len) {
+        this.len = len;
+    }
+
+    public T[] getItems() {
+        return items;
+    }
+
+    public void setItems(T[] items) {
+        this.items = items;
+    }
+
+    public int getFront() {
+        return front;
+    }
+
+    public void setFront(int front) {
+        this.front = front;
+    }
+
+    public int getRear() {
+        return rear;
+    }
+
+    public void setRear(int rear) {
+        this.rear = rear;
+    }
+    
+    
 }
 
 
