@@ -4,6 +4,8 @@
  */
 package primitives;
 
+import classes.Vehicle;
+
 /**
  *
  * @author marti
@@ -54,12 +56,24 @@ public class Queue<T> {
         }
     }
 
-    public void display() {
+//    public void display() {
+//        if (isEmpty()) {
+//            System.out.println("Queue is empty, underflow condition!!");
+//        } else {
+//            for (int i = front; i <= rear; i++) {
+//                System.out.println(items[i]);
+//            }
+//        }
+//    }
+    
+    public void displayCars() {
         if (isEmpty()) {
             System.out.println("Queue is empty, underflow condition!!");
         } else {
             for (int i = front; i <= rear; i++) {
-                System.out.println(items[i]);
+                if (items[i] instanceof Vehicle vehicle) {
+                    vehicle.printCarId();
+                }
             }
         }
     }

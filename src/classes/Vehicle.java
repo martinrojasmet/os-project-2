@@ -11,9 +11,11 @@ import java.util.Random;
  * @author marti
  */
 public class Vehicle {
-    String id;
+    int idNumber;
     int priority;
     int counter;
+    String nameCompany;
+    char idLetter;
     
     // La calidad del carro va a ser determinada por un nro. que va del 1 al 3.
     //Siendo el 1 la mas alta calidad y 3 la menor calidad
@@ -26,10 +28,11 @@ public class Vehicle {
     
     int randomNumber;
 
-    public Vehicle(String id, int priority, int counter, int totalGoodQuality, int bodyworkGoodQuality, int chasisbodyworkGoodQuality, int motorGoodQuality, int wheelsGoodQuality) {
-        this.id = id;
-        this.priority = priority;
-        this.counter = counter;
+    public Vehicle(int counterCars, String nameCompany) {
+        this.idNumber = counterCars;
+        this.idLetter = nameCompany.charAt(0);
+        this.priority = 0;
+        this.counter = 0;
         this.totalGoodQuality = 5;
         this.bodyworkGoodQuality = false;
         this.chasisGoodQuality = false;
@@ -67,10 +70,10 @@ public class Vehicle {
              this.individualQualityCounter++; 
         }
         
-        if (this.individualQualityCounter == 4) {
+        if (this.individualQualityCounter >= 3) {
             this.totalGoodQuality = 1;
             this.priority = 1;
-        } else if (this.individualQualityCounter == 3) {
+        } else if (this.individualQualityCounter == 2) {
             this.totalGoodQuality = 2;
             this.priority = 2;
         } else {
@@ -80,11 +83,27 @@ public class Vehicle {
     }
 
     public String getId() {
-        return id;
+        String result = this.idLetter + (String.valueOf(this.idNumber));
+        return result;
+    }
+    
+    public void printCarId() {
+        System.out.println(this.getId());
+    }
+    public int getIdNumber() {
+        return idNumber;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setIdNumber(int idNumber) {
+        this.idNumber = idNumber;
+    }
+
+    public char getIdLetter() {
+        return idLetter;
+    }
+
+    public void setIdLetter(char idLetter) {
+        this.idLetter = idLetter;
     }
 
     public int getPriority() {

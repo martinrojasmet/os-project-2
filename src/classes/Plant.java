@@ -10,19 +10,39 @@ import primitives.Queue;
  *
  * @author marti
  */
-public class Company {
+public class Plant {
     Queue firstPriorityQueue;
     Queue secondPriorityQueue;
     Queue thirdPriorityQueue;
     Queue reinforcementQueue;
     String name;
+    int counterCars;
 
-    public Company(String name) {
+    public Plant(String name) {
         this.name = name;
         this.firstPriorityQueue = new Queue(100);
         this.secondPriorityQueue = new Queue(100);
         this.thirdPriorityQueue = new Queue(100);
         this.reinforcementQueue = new Queue(100);
+        this.counterCars = 0;
+    }
+    
+    public void generateFirstTenCars() {
+        for (int i = 0; i < 10; i++) {
+            Vehicle vehicle = new Vehicle(i, this.name);
+            if (vehicle.getPriority() == 1) {
+                this.firstPriorityQueue.enQueue(vehicle);
+                this.counterCars++;
+            } else if (vehicle.getPriority() == 2) {
+                this.secondPriorityQueue.enQueue(vehicle);
+                this.counterCars++;
+            } else if (vehicle.getPriority() == 3) {
+                this.thirdPriorityQueue.enQueue(vehicle);
+                this.counterCars++;
+            } else {
+                System.out.println("Error en la prioridad del carro");
+            }
+        }
     }
 
     public String getName() {

@@ -4,7 +4,7 @@
  */
 package proyectoso2;
 
-import primitives.Queue;
+import classes.RaceSimulator;
 
 /**
  *
@@ -16,23 +16,30 @@ public class ProyectoSO2 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Queue queue = new Queue(3);
-                System.out.println(queue.isFull());
-        System.out.println(queue.isEmpty());
-        queue.enQueue(3);
-        queue.enQueue(38);
-        queue.enQueue(2);
-        System.out.println(queue.isFull());
-                System.out.println(queue.isEmpty());
-        queue.deQueue();
-        queue.enQueue(2);
-        queue.deQueue();
-        queue.deQueue();
-        queue.enQueue(345);
-        queue.peak();
-        System.out.println(queue.isFull());
-        System.out.println(queue.isEmpty());
-        queue.display();
+//        
+//        Vehicle vehicle = new Vehicle(0, "Bugatti");
+//        Vehicle vehicle1 = new Vehicle(1, "Bugatti");
+//        Vehicle vehicle2 = new Vehicle(2, "Bugatti");
+//        Vehicle vehicle3 = new Vehicle(3, "Bugatti");
+//        Queue queue = new Queue(3);
+//        System.out.println(queue.isFull());
+//        System.out.println(queue.isEmpty());
+//        queue.enQueue(vehicle);
+//        queue.enQueue(vehicle1);
+//        queue.enQueue(vehicle2);
+//        System.out.println(queue.isFull());
+//        System.out.println(queue.isEmpty());
+//        queue.deQueue();
+//        queue.enQueue(vehicle3);
+//        queue.deQueue();
+//        queue.enQueue(vehicle2);
+//        ((Vehicle) queue.peak()).printCarId();
+//        System.out.println(queue.isFull());
+//        System.out.println(queue.isEmpty());
+//        queue.displayCars();
+
+          RaceSimulator r = new RaceSimulator();
+          r.start();
     }
     
 }
