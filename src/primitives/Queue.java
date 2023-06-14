@@ -6,30 +6,30 @@ import classes.Vehicle;
  *
  * @author marti
  */
-public class Queue<T> {
-    int len;
-    T items[];
+public class Queue {
+    int lenght;
+    Vehicle[] items;
     int front;
     int rear;
 
-    public Queue(int len) {
-        this.len = len;
-        this.items = (T[]) new Object[len];
+    public Queue(int lenght) {
+        this.lenght = lenght;
+        this.items = new Vehicle[lenght];
         this.front = -1;
         this.rear = -1;
     }
 
     public boolean isFull() {
-        return rear == len - 1;
+        return rear == lenght - 1;
     }
 
     public boolean isEmpty() {
         return front == -1 && rear == -1;
     }
 
-    public void enQueue(T itemValue) {
+    public void enQueue(Vehicle itemValue) {
         if (isFull()) {
-            System.out.println("Queue is full, Overflow condition");
+            System.out.println("Queue is full");
         } else if (isEmpty()) {
             front = rear = 0;
             items[rear] = itemValue;
@@ -39,17 +39,22 @@ public class Queue<T> {
         }
     }
 
-    public void deQueue() {
+    public Vehicle deQueue() {
         if (isEmpty()) {
-            System.out.println("Queue is empty. Nothing to dequeue. Underflow condition!!");
+            System.out.println("Queue is empty");
         } else if (front == rear) {
+            Vehicle vehicle = items[front];
             front = rear = -1;
+            return vehicle;
         } else {
+            Vehicle vehicle = items[front];
             for (int i = front; i < rear; i++) {
                 items[i] = items[i + 1];
             }
             rear--;
+            return vehicle;
         }
+        return null;
     }
 
 //    public void display() {
@@ -67,35 +72,33 @@ public class Queue<T> {
             System.out.println("Queue is empty, underflow condition!!");
         } else {
             for (int i = front; i <= rear; i++) {
-                if (items[i] instanceof Vehicle vehicle) {
-                    vehicle.printCarId();
-                }
+                items[i].printCarId();
             }
         }
     }
 
-    public T peak() {
+    public Vehicle getPeak() {
         if (isEmpty()) {
-            System.out.println("Queue is empty, underflow condition!!");
+            System.out.println("Queue is empty");
             return null;
         } else {
             return items[front];
         }
     }
 
-    public int getLen() {
-        return len;
+    public int getLenght() {
+        return lenght;
     }
 
-    public void setLen(int len) {
-        this.len = len;
+    public void setLenght(int lenght) {
+        this.lenght = lenght;
     }
 
-    public T[] getItems() {
+    public Vehicle[] getItems() {
         return items;
     }
 
-    public void setItems(T[] items) {
+    public void setItems(Vehicle[] items) {
         this.items = items;
     }
 

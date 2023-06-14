@@ -21,4 +21,7 @@ public class Utils {
     public static int chasisProbability = 70;
     public static int motorProbability = 50;
     public static int wheelProbability = 40;
+    
+    public static double addNewVehicleProbability = 0.8;
+    public static double leaveReinforcementQueueProbability = 0.4;
 }
