@@ -14,7 +14,7 @@ public class Vehicle {
     char idLetter;
     
     // La calidad del carro va a ser determinada por un nro. que va del 1 al 3.
-    //Siendo el 1 la mas alta calidad y 3 la menor calidad
+    // Siendo el 1 la mas alta calidad y 3 la menor calidad
     int totalGoodQuality;
     boolean bodyworkGoodQuality;
     boolean chasisGoodQuality;
