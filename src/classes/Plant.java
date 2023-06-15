@@ -76,5 +76,13 @@ public class Plant {
     public void setReinforcementQueue(Queue reinforcementQueue) {
         this.reinforcementQueue = reinforcementQueue;
     }
+
+    public int getCounterCars() {
+        return counterCars;
+    }
+
+    public void setCounterCars(int counterCars) {
+        this.counterCars = counterCars;
+    }
     
 }

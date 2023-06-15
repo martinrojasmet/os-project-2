@@ -47,14 +47,28 @@ public class Queue {
             front = rear = -1;
             return vehicle;
         } else {
+//            Vehicle vehicle = items[front];
+//            for (int i = front; i < rear; i++) {
+//                items[i] = items[i + 1];
+//            }
+//            rear--;
+//            return vehicle;
             Vehicle vehicle = items[front];
-            for (int i = front; i < rear; i++) {
-                items[i] = items[i + 1];
+            front++;
+            if (front > rear) {
+                front = rear = -1;
             }
-            rear--;
             return vehicle;
         }
         return null;
+    }
+    
+    public int size() {
+        if (isEmpty()) {
+            return 0;
+        } else {
+            return rear - front + 1;
+        }
     }
 
 //    public void display() {
@@ -72,7 +86,11 @@ public class Queue {
             System.out.println("Queue is empty, underflow condition!!");
         } else {
             for (int i = front; i <= rear; i++) {
-                items[i].printCarId();
+                if (items[i] != null) {
+                    items[i].printCarId();
+                } else {
+                    System.out.println("hay null");
+                }
             }
         }
     }

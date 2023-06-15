@@ -29,20 +29,20 @@ public class AI extends Thread {
         this.lamborghiniVehicleRacing = null;
     }
     
-    public String win(Vehicle bugatti, Vehicle lamborghini) {
+    public Vehicle win(Vehicle bugatti, Vehicle lamborghini) {
         // Procedimiento para escoger ganador
-        String idWinner = "";
+        Vehicle winner;
         
         int qtyBugattiQuality = getQuality(bugatti);
         int qtyLamborghiniQuality = getQuality(lamborghini);
         
         if (qtyBugattiQuality > qtyLamborghiniQuality) {
-            idWinner = bugatti.getId();
-        } else if (qtyLamborghiniQuality > qtyBugattiQuality) {
-            idWinner = lamborghini.getId();
+            winner = bugatti;
+        } else {
+            winner = lamborghini;
         }
         
-        return idWinner;
+        return winner;
     }
     
     public void race(Vehicle bugatti, Vehicle lamborghini) {
@@ -56,15 +56,17 @@ public class AI extends Thread {
             
             double randomNum = Math.random();
             if (randomNum <= this.winningProbability) {
-                String winner = win(bugatti, lamborghini);
+                Vehicle winner = win(bugatti, lamborghini);
                 this.raceStatus = Utils.win;
+//                System.out.println("Winner:");
+//                System.out.println(winner.getId());
             } else if (randomNum <= this.winningProbability + this.drawProbability) {
                 this.raceStatus = Utils.draw;
             } else {
                 this.raceStatus = Utils.notAbleToRace;
             }
             this.qtyRounds++;
-            this.setStatus(Utils.decidingStatus);
+            this.setStatus(Utils.waitingStatus);
             
         } catch (InterruptedException ex) {
             Logger.getLogger(AI.class.getName()).log(Level.SEVERE, null, ex);
