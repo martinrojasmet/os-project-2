@@ -7,137 +7,104 @@ import classes.Vehicle;
  * @author marti
  */
 public class Queue {
-    int lenght;
-    Vehicle[] items;
-    int front;
-    int rear;
+    private NodeQueue front, rear;
+    private int length;
 
-    public Queue(int lenght) {
-        this.lenght = lenght;
-        this.items = new Vehicle[lenght];
-        this.front = -1;
-        this.rear = -1;
+    public Queue(){
+        this.front = null;
+        this.rear = null;
+        this.length = 0;       
     }
 
-    public boolean isFull() {
-        return rear == lenght - 1;
-    }
-
-    public boolean isEmpty() {
-        return front == -1 && rear == -1;
-    }
-
-    public void enQueue(Vehicle itemValue) {
-        if (isFull()) {
-            System.out.println("Queue is full");
-        } else if (isEmpty()) {
-            front = rear = 0;
-            items[rear] = itemValue;
-        } else {
-            rear++;
-            items[rear] = itemValue;
-        }
-    }
-
-    public Vehicle deQueue() {
-        if (isEmpty()) {
-            System.out.println("Queue is empty");
-        } else if (front == rear) {
-            Vehicle vehicle = items[front];
-            front = rear = -1;
-            return vehicle;
-        } else {
-//            Vehicle vehicle = items[front];
-//            for (int i = front; i < rear; i++) {
-//                items[i] = items[i + 1];
-//            }
-//            rear--;
-//            return vehicle;
-            Vehicle vehicle = items[front];
-            front++;
-            if (front > rear) {
-                front = rear = -1;
-            }
-            return vehicle;
-        }
-        return null;
-    }
-    
-    public int size() {
-        if (isEmpty()) {
-            return 0;
-        } else {
-            return rear - front + 1;
-        }
-    }
-
-//    public void display() {
-//        if (isEmpty()) {
-//            System.out.println("Queue is empty, underflow condition!!");
-//        } else {
-//            for (int i = front; i <= rear; i++) {
-//                System.out.println(items[i]);
-//            }
-//        }
-//    }
-    
-    public void displayCars() {
-        if (isEmpty()) {
-            System.out.println("Queue is empty, underflow condition!!");
-        } else {
-            for (int i = front; i <= rear; i++) {
-                if (items[i] != null) {
-                    items[i].printCarId();
-                } else {
-                    System.out.println("hay null");
-                }
-            }
-        }
-    }
-
-    public Vehicle getPeak() {
-        if (isEmpty()) {
-            System.out.println("Queue is empty");
-            return null;
-        } else {
-            return items[front];
-        }
-    }
-
-    public int getLenght() {
-        return lenght;
-    }
-
-    public void setLenght(int lenght) {
-        this.lenght = lenght;
-    }
-
-    public Vehicle[] getItems() {
-        return items;
-    }
-
-    public void setItems(Vehicle[] items) {
-        this.items = items;
-    }
-
-    public int getFront() {
+    public NodeQueue getFront() {
         return front;
     }
 
-    public void setFront(int front) {
+    public void setFront(NodeQueue front) {
         this.front = front;
     }
 
-    public int getRear() {
+    public NodeQueue getRear() {
         return rear;
     }
 
-    public void setRear(int rear) {
+    public void setRear(NodeQueue rear) {
         this.rear = rear;
     }
+
+    public int getLength() {
+        return length;
+    }
+
+    public void setLength(int length) {
+        this.length = length;
+    }
+
+    public void enQueue(Object element) {
+        NodeQueue node = new NodeQueue(element);
+        if(isEmpty()) {
+            setFront(node);
+            setRear(node);
+        } else {
+            getRear().setNext(node);
+            setRear(node);
+        }
+        setLength(getLength() + 1);
+    }
+
+    public void deQueue1() {
+        if(!isEmpty()) {
+            if (getLength() == 1){
+                setFront(null);
+                setRear(null);
+            } else {
+                NodeQueue temp = getFront();
+                setFront(temp.getNext());
+                temp.setNext(null);
+            }
+            setLength(getLength() - 1);
+        } 
+    }
     
+    public boolean isEmpty() {
+        return getFront() == null;
+    }
+
+    public Object getPeak() {
+        return getFront().getElement();
+    }
+
+    public Vehicle deQueue() {
+        Object temp = getPeak();
+        deQueue1();
+        return ((Vehicle) temp);
+    }
     
+    public void displayCars() {
+        if (this.isEmpty()) {
+            System.out.println("Cola esta vacia");
+        } else {
+            NodeQueue pointer = this.front;
+            while (pointer != null) {
+                ((Vehicle) pointer.getElement()).printCarId();
+                NodeQueue temp = pointer.getNext();
+                pointer = temp;
+            }
+        }
+    }
+    
+    public void moveCars(Queue nextQueue) {
+        if (!this.isEmpty()) {
+            NodeQueue pointer = this.front;
+            while (pointer != null) {
+                int previousCount1 = ((Vehicle) pointer.getElement()).getCounter()+1;
+                ((Vehicle) pointer.getElement()).setCounter(previousCount1);
+                if (((Vehicle) pointer.getElement()).getCounter() == 8) {
+                    this.deQueue();
+                }
+                NodeQueue temp = pointer.getNext();
+                pointer = temp;
+            }
+        }
+    }
 }
-
-
-

@@ -16,10 +16,10 @@ public class Plant {
 
     public Plant(String name) {
         this.name = name;
-        this.firstPriorityQueue = new Queue(100);
-        this.secondPriorityQueue = new Queue(100);
-        this.thirdPriorityQueue = new Queue(100);
-        this.reinforcementQueue = new Queue(100);
+        this.firstPriorityQueue = new Queue();
+        this.secondPriorityQueue = new Queue();
+        this.thirdPriorityQueue = new Queue();
+        this.reinforcementQueue = new Queue();
         this.counterCars = 0;
     }
     

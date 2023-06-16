@@ -53,8 +53,11 @@ public class Administrator extends Thread {
         double randomNum = Math.random();
         if (randomNum <= this.leaveReinforcementQueueProbability) {
             // Se saca de la cola de refuerzo y se pone en la cola de prioridad 1
-            Vehicle vehicle = plant.getReinforcementQueue().deQueue();
-            plant.getFirstPriorityQueue().enQueue(vehicle);
+            if (!plant.getReinforcementQueue().isEmpty()) {
+                Vehicle vehicle = plant.getReinforcementQueue().deQueue();
+                plant.getFirstPriorityQueue().enQueue(vehicle);
+            }
+
         }
     }
     
@@ -62,37 +65,39 @@ public class Administrator extends Thread {
         Queue firstPriorityQueue = plant.getFirstPriorityQueue();
         Queue secondPriorityQueue = plant.getSecondPriorityQueue();
         Queue thirdPriorityQueue = plant.getThirdPriorityQueue();
+        secondPriorityQueue.moveCars(firstPriorityQueue);
+        thirdPriorityQueue.moveCars(secondPriorityQueue);
         
-        Vehicle[] secondPriority = plant.getSecondPriorityQueue().getItems();
-        Vehicle[] thirdPriority = plant.getThirdPriorityQueue().getItems();
+//        Vehicle[] secondPriority = plant.getSecondPriorityQueue()
+//        Vehicle[] thirdPriority = plant.getThirdPriorityQueue().getItems();
         
-        // Se actualizan los contadores de los carros de prioridad 2
-        if (!secondPriorityQueue.isEmpty()) {
-            for (int i = secondPriorityQueue.getFront(); i <= secondPriorityQueue.getRear(); i++) {
-                if (secondPriority[i].getCounter() == Utils.counterVehicle) {
-                    Vehicle vehicle = secondPriorityQueue.deQueue();
-                    vehicle.setCounter(0);
-                    firstPriorityQueue.enQueue(vehicle);
-                    i--;
-                } else {
-                    secondPriority[i].setCounter(secondPriority[i].getCounter() + 1);
-                }
-            } 
-        }
-        
-        // Se actualizan los contadores de los carros de prioridad 3
-        if (!thirdPriorityQueue.isEmpty()) {
-            for (int i = thirdPriorityQueue.getFront(); i <= thirdPriorityQueue.getRear(); i++) {
-                if (thirdPriority[i].getCounter() == Utils.counterVehicle) {
-                    Vehicle vehicle = thirdPriorityQueue.deQueue();
-                    vehicle.setCounter(0);
-                    secondPriorityQueue.enQueue(vehicle);
-                    i--;
-                } else {
-                    thirdPriority[i].setCounter(thirdPriority[i].getCounter() + 1);
-                }
-            } 
-        }
+//        // Se actualizan los contadores de los carros de prioridad 2
+//        if (!secondPriorityQueue.isEmpty()) {
+//            for (int i = secondPriorityQueue.getFront(); i <= secondPriorityQueue.getRear(); i++) {
+//                if (secondPriority[i].getCounter() == Utils.counterVehicle) {
+//                    Vehicle vehicle = secondPriorityQueue.deQueue();
+//                    vehicle.setCounter(0);
+//                    firstPriorityQueue.enQueue(vehicle);
+//                    i--;
+//                } else {
+//                    secondPriority[i].setCounter(secondPriority[i].getCounter() + 1);
+//                }
+//            } 
+//        }
+//        
+//        // Se actualizan los contadores de los carros de prioridad 3
+//        if (!thirdPriorityQueue.isEmpty()) {
+//            for (int i = thirdPriorityQueue.getFront(); i <= thirdPriorityQueue.getRear(); i++) {
+//                if (thirdPriority[i].getCounter() == Utils.counterVehicle) {
+//                    Vehicle vehicle = thirdPriorityQueue.deQueue();
+//                    vehicle.setCounter(0);
+//                    secondPriorityQueue.enQueue(vehicle);
+//                    i--;
+//                } else {
+//                    thirdPriority[i].setCounter(thirdPriority[i].getCounter() + 1);
+//                }
+//            } 
+//        }
     }
     
     public void addNewVehicle() {
