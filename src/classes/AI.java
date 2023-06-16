@@ -17,6 +17,7 @@ public class AI extends Thread {
     private Vehicle bugattiVehicleRacing;
     private Vehicle lamborghiniVehicleRacing;
     private String raceStatus;
+    private Vehicle raceWinner;
 
     public AI(int timeToProcess) {
         this.timeToProcess = timeToProcess;
@@ -27,6 +28,7 @@ public class AI extends Thread {
         this.qtyRounds = 0;
         this.bugattiVehicleRacing = null;
         this.lamborghiniVehicleRacing = null;
+        this.raceWinner = null;
     }
     
     public Vehicle win(Vehicle bugatti, Vehicle lamborghini) {
@@ -58,8 +60,7 @@ public class AI extends Thread {
             if (randomNum <= this.winningProbability) {
                 Vehicle winner = win(bugatti, lamborghini);
                 this.raceStatus = Utils.win;
-//                System.out.println("Winner:");
-//                System.out.println(winner.getId());
+                this.setRaceWinner(winner);
             } else if (randomNum <= this.winningProbability + this.drawProbability) {
                 this.raceStatus = Utils.draw;
             } else {
@@ -176,6 +177,14 @@ public class AI extends Thread {
 
     public void setRaceStatus(String raceStatus) {
         this.raceStatus = raceStatus;
+    }
+
+    public Vehicle getRaceWinner() {
+        return raceWinner;
+    }
+
+    public void setRaceWinner(Vehicle raceWinner) {
+        this.raceWinner = raceWinner;
     }
     
 }

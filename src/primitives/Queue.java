@@ -42,25 +42,20 @@ public class Queue {
     public Vehicle deQueue() {
         if (isEmpty()) {
             System.out.println("Queue is empty");
+            return null;
         } else if (front == rear) {
             Vehicle vehicle = items[front];
             front = rear = -1;
             return vehicle;
         } else {
-//            Vehicle vehicle = items[front];
-//            for (int i = front; i < rear; i++) {
-//                items[i] = items[i + 1];
-//            }
-//            rear--;
-//            return vehicle;
             Vehicle vehicle = items[front];
-            front++;
-            if (front > rear) {
-                front = rear = -1;
+            for (int i = front; i < rear; i++) {
+                items[i] = items[i + 1];
             }
+            rear--;
             return vehicle;
         }
-        return null;
+        
     }
     
     public int size() {

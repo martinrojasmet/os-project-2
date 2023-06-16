@@ -13,6 +13,8 @@ public class Administrator extends Thread {
     private Plant bugattiPlant;
     private Plant lamborghiniPlant;
     private int revisionCycles;
+    private int bugattiWins;
+    private int lamborghiniWins;
 
     public Administrator(AI processor, Plant bugattiPlant, Plant lamborghiniPlant) {
         this.processor = processor;
@@ -21,6 +23,8 @@ public class Administrator extends Thread {
         this.bugattiPlant = bugattiPlant;
         this.lamborghiniPlant = lamborghiniPlant;
         this.revisionCycles = Utils.revisionCycles;
+        this.bugattiWins = 0;
+        this.lamborghiniWins = 0;
     }
     
     public Vehicle chooseVehicleToRace(Plant plant) {
@@ -36,7 +40,11 @@ public class Administrator extends Thread {
     }
     
     public void raceWin(Vehicle bugatti, Vehicle lamborghini) {
-        
+        if (this.processor.getRaceWinner().getId().equals(bugatti.getId())) {
+            this.bugattiWins++;
+        } else {
+            this.lamborghiniWins++;
+        }
     }
     
     public void raceDraw(Vehicle bugatti, Vehicle lamborghini) {
@@ -51,7 +59,7 @@ public class Administrator extends Thread {
     
     public void dispatchReinforcementVehicle(Plant plant) {
         double randomNum = Math.random();
-        if (randomNum <= this.leaveReinforcementQueueProbability) {
+        if (randomNum <= this.leaveReinforcementQueueProbability && !plant.getReinforcementQueue().isEmpty()) {
             // Se saca de la cola de refuerzo y se pone en la cola de prioridad 1
             Vehicle vehicle = plant.getReinforcementQueue().deQueue();
             plant.getFirstPriorityQueue().enQueue(vehicle);
@@ -156,6 +164,8 @@ public class Administrator extends Thread {
             }
             
             System.out.println("\nRace number " + this.processor.getQtyRounds());
+            System.out.println("Bugatti wins: " + this.bugattiWins);
+            System.out.println("Lamborghini wins: " + this.lamborghiniWins);
             System.out.println("Lamborghini");
             System.out.println("1");
             this.lamborghiniPlant.getFirstPriorityQueue().displayCars();
@@ -225,6 +235,22 @@ public class Administrator extends Thread {
 
     public void setRevisionCycles(int revisionCycles) {
         this.revisionCycles = revisionCycles;
+    }
+
+    public int getBugattiWins() {
+        return bugattiWins;
+    }
+
+    public void setBugattiWins(int bugattiWins) {
+        this.bugattiWins = bugattiWins;
+    }
+
+    public int getLamborghiniWins() {
+        return lamborghiniWins;
+    }
+
+    public void setLamborghiniWins(int lamborghiniWins) {
+        this.lamborghiniWins = lamborghiniWins;
     }
     
 }

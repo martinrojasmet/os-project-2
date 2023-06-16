@@ -4,6 +4,7 @@
  */
 package proyectoso2;
 
+import classes.RaceSimulator;
 import interfaces.GUI;
 
 /**
@@ -39,6 +40,8 @@ public class ProyectoSO2 {
 //        queue.displayCars();
         GUI gui = new GUI();
         gui.setVisible(true);
+        RaceSimulator race = new RaceSimulator();
+        race.start();
     }
     
 }
