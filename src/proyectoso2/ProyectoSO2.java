@@ -38,11 +38,10 @@ public class ProyectoSO2 {
 //        System.out.println(queue.isFull());
 //        System.out.println(queue.isEmpty());
 //        queue.displayCars();
-//        GUI gui = new GUI();
-//        gui.setVisible(true);
-        
-        RaceSimulator r = new RaceSimulator();
-        r.start();
+        GUI gui = new GUI();
+        gui.setVisible(true);
+        RaceSimulator race = new RaceSimulator();
+        race.start();
     }
     
 }
