@@ -48,19 +48,19 @@ public class Vehicle {
              this.individualQualityCounter++; 
         }
    
-        randomNumber = random.nextInt(101);
+        randomNumber = random.nextInt(100);
         if (randomNumber < Utils.chasisProbability) {
              this.chasisGoodQuality = true;
              this.individualQualityCounter++; 
         }
  
-        randomNumber = random.nextInt(101);
+        randomNumber = random.nextInt(100);
         if (randomNumber < Utils.motorProbability) {
              this.motorGoodQuality = true;
              this.individualQualityCounter++; 
         }
         
-        randomNumber = random.nextInt(101);
+        randomNumber = random.nextInt(100);
         if (randomNumber < Utils.wheelProbability) {
              this.wheelsGoodQuality = true;
              this.individualQualityCounter++; 
