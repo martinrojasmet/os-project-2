@@ -55,7 +55,7 @@ public class AI extends Thread {
             
             sleep(this.timeToProcess * 1000);
             this.setStatus(Utils.announcingStatus);
-            
+            sleep(100); //para poder verlo
             double randomNum = Math.random();
             if (randomNum <= this.winningProbability) {
                 Vehicle winner = win(bugatti, lamborghini);
@@ -68,6 +68,7 @@ public class AI extends Thread {
             }
             this.qtyRounds++;
             this.setStatus(Utils.waitingStatus);
+            sleep(100); //para poder verlo
             
         } catch (InterruptedException ex) {
             Logger.getLogger(AI.class.getName()).log(Level.SEVERE, null, ex);

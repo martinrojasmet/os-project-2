@@ -66,7 +66,7 @@ public class Administrator extends Thread {
         }
     }
     
-    public void updateVehicleCounters(Plant plant) {
+    public void updateVehicleCounters(Plant plant) { //cambiar el nombre y mover a queue (revisar)
         Queue firstPriorityQueue = plant.getFirstPriorityQueue();
         Queue secondPriorityQueue = plant.getSecondPriorityQueue();
         Queue thirdPriorityQueue = plant.getThirdPriorityQueue();
@@ -134,7 +134,7 @@ public class Administrator extends Thread {
             } else if (lamborghini.getPriority() == 3) {
                 this.lamborghiniPlant.getThirdPriorityQueue().enQueue(lamborghini);
                 this.lamborghiniPlant.setCounterCars(lamborghiniCounter + 1);
-            } else {
+            } else { //quitar (revisar)
                 System.out.println("Error en la prioridad del carro");
             }
         }
@@ -163,28 +163,28 @@ public class Administrator extends Thread {
                 addNewVehicle();
             }
             
-            System.out.println("\nRace number " + this.processor.getQtyRounds());
-            System.out.println("Bugatti wins: " + this.bugattiWins);
-            System.out.println("Lamborghini wins: " + this.lamborghiniWins);
-            System.out.println("Lamborghini");
-            System.out.println("1");
-            this.lamborghiniPlant.getFirstPriorityQueue().displayCars();
-            System.out.println("2");
-            this.lamborghiniPlant.getSecondPriorityQueue().displayCars();
-            System.out.println("3");
-            this.lamborghiniPlant.getThirdPriorityQueue().displayCars();
-            System.out.println("Reinf");
-            this.lamborghiniPlant.getReinforcementQueue().displayCars();
-
-            System.out.println("Bugatti");
-            System.out.println("1");
-            this.bugattiPlant.getFirstPriorityQueue().displayCars();
-            System.out.println("2");
-            this.bugattiPlant.getSecondPriorityQueue().displayCars();
-            System.out.println("3");
-            this.bugattiPlant.getThirdPriorityQueue().displayCars();
-            System.out.println("Reinf");
-            this.bugattiPlant.getReinforcementQueue().displayCars();
+//            System.out.println("\nRace number " + this.processor.getQtyRounds());
+//            System.out.println("Bugatti wins: " + this.bugattiWins);
+//            System.out.println("Lamborghini wins: " + this.lamborghiniWins);
+//            System.out.println("Lamborghini");
+//            System.out.println("1");
+//            this.lamborghiniPlant.getFirstPriorityQueue().displayCars();
+//            System.out.println("2");
+//            this.lamborghiniPlant.getSecondPriorityQueue().displayCars();
+//            System.out.println("3");
+//            this.lamborghiniPlant.getThirdPriorityQueue().displayCars();
+//            System.out.println("Reinf");
+//            this.lamborghiniPlant.getReinforcementQueue().displayCars();
+//
+//            System.out.println("Bugatti");
+//            System.out.println("1");
+//            this.bugattiPlant.getFirstPriorityQueue().displayCars();
+//            System.out.println("2");
+//            this.bugattiPlant.getSecondPriorityQueue().displayCars();
+//            System.out.println("3");
+//            this.bugattiPlant.getThirdPriorityQueue().displayCars();
+//            System.out.println("Reinf");
+//            this.bugattiPlant.getReinforcementQueue().displayCars();
         }
     }
     

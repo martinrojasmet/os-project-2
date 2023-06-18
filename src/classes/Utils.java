@@ -14,9 +14,9 @@ public class Utils {
     public static double drawProbability = 0.27;
     public static double notAbleToRaceProbability = 0.33;
     
-    public static String win = "Win";
-    public static String draw = "Draw";
-    public static String notAbleToRace = "Not able to race";
+    public static String win = "ganó";
+    public static String draw = "Empate";
+    public static String notAbleToRace = "No se puede correr";
     
     // Vehicle constants
     public static int bodyworkProbability = 60;

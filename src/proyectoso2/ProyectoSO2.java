@@ -40,8 +40,9 @@ public class ProyectoSO2 {
 //        queue.displayCars();
         GUI gui = new GUI();
         gui.setVisible(true);
-        RaceSimulator race = new RaceSimulator();
-        race.start();
+        gui.run();
+//        RaceSimulator race = new RaceSimulator();
+//        race.start();
     }
     
 }

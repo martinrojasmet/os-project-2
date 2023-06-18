@@ -89,6 +89,26 @@ public class Queue {
             }
         }
     }
+    
+    public String displayQueue() {
+        String result = "La cola esta vacia";
+        if (!isEmpty()) {
+            
+            result = "";
+            for (int i = front; i <= rear; i++) {
+                if (items[i] != null) {
+                    if (i == 0) {
+                        result += items[i].getId();
+                    } else {
+                        result += "," + items[i].getId();
+                    }
+                } else {
+                    System.out.println("hay null"); //revisar
+                }
+            }
+        } 
+        return result;
+    }
 
     public Vehicle getPeak() {
         if (isEmpty()) {
