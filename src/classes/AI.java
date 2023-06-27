@@ -48,31 +48,33 @@ public class AI extends Thread {
     }
     
     public void race(Vehicle bugatti, Vehicle lamborghini) {
-        try {
-            this.setBugattiVehicleRacing(bugatti);
-            this.setLamborghiniVehicleRacing(lamborghini);
-            this.setStatus(Utils.decidingStatus);
-            
-            sleep(this.timeToProcess * 1000);
-            this.setStatus(Utils.announcingStatus);
-            sleep(100); //para poder verlo
-            double randomNum = Math.random();
-            if (randomNum <= this.winningProbability) {
-                Vehicle winner = win(bugatti, lamborghini);
-                this.raceStatus = Utils.win;
-                this.setRaceWinner(winner);
-            } else if (randomNum <= this.winningProbability + this.drawProbability) {
-                this.raceStatus = Utils.draw;
-            } else {
-                this.raceStatus = Utils.notAbleToRace;
-            }
-            this.qtyRounds++;
-            this.setStatus(Utils.waitingStatus);
-            sleep(100); //para poder verlo
-            
-        } catch (InterruptedException ex) {
-            Logger.getLogger(AI.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        if (bugatti != null && lamborghini != null) {
+            try {
+                this.setBugattiVehicleRacing(bugatti);
+                this.setLamborghiniVehicleRacing(lamborghini);
+                this.setStatus(Utils.decidingStatus);
+
+                sleep((this.timeToProcess * 1000) - 500) ;
+                this.setStatus(Utils.announcingStatus);
+                sleep(500); //para poder verlo
+                double randomNum = Math.random();
+                if (randomNum <= 1) {
+                    Vehicle winner = win(bugatti, lamborghini);
+                    this.raceStatus = Utils.win;
+                    this.setRaceWinner(winner);
+                } else if (randomNum <= this.winningProbability + this.drawProbability) {
+                    this.raceStatus = Utils.draw;
+                } else {
+                    this.raceStatus = Utils.notAbleToRace;
+                }
+                this.qtyRounds++;
+                this.setStatus(Utils.waitingStatus);
+                sleep(100); //para poder verlo
+
+            } catch (InterruptedException ex) {
+                Logger.getLogger(AI.class.getName()).log(Level.SEVERE, null, ex);
+            }    
+        }   
     }
     
     public int getQuality(Vehicle vehicle) {

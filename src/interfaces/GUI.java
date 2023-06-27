@@ -24,7 +24,7 @@ public class GUI extends javax.swing.JFrame {
      * Creates new form GUI
      */
     public GUI() {
-        initComponents();;
+        initComponents();
         this.raceSim = new RaceSimulator();
         this.guiHandler = new GUIHandler(this);
     }
@@ -58,29 +58,37 @@ public class GUI extends javax.swing.JFrame {
         QueueTitleBugatti3 = new javax.swing.JLabel();
         QueueBugatti4 = new javax.swing.JTextField();
         QueueTitleBugatti4 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         AIWindow = new javax.swing.JPanel();
         AITime = new javax.swing.JLabel();
         StopButton = new javax.swing.JButton();
         AITimeIncrease = new javax.swing.JButton();
         AITimeDecrease = new javax.swing.JButton();
+        qtyRounds = new javax.swing.JLabel();
+        roundsTitle = new javax.swing.JLabel();
         AIStatus = new javax.swing.JLabel();
         AITimeTitle = new javax.swing.JLabel();
         AITitle = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         ResultWindowBugatti = new javax.swing.JPanel();
         RacingTitleBugatti = new javax.swing.JLabel();
         RacingTimeTitleBugatti = new javax.swing.JLabel();
         RacingTimeBugatti = new javax.swing.JLabel();
         RacingIDTitleBugatti = new javax.swing.JLabel();
         RacingIDBugatti = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         ResultWindow = new javax.swing.JPanel();
         ResultTitle = new javax.swing.JLabel();
         Result = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
         ResultWindowLamborghini = new javax.swing.JPanel();
         RacingTitleLamborghini = new javax.swing.JLabel();
         RacingTimeTitleLamborghini = new javax.swing.JLabel();
         RacingIDTitleLamborghini = new javax.swing.JLabel();
         RacingIDLamborghini = new javax.swing.JLabel();
         RacingTimeLamborghini = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
         LamborghiniWindow = new javax.swing.JPanel();
         winsLamborghini = new javax.swing.JLabel();
         titleLamborghini = new javax.swing.JLabel();
@@ -93,6 +101,7 @@ public class GUI extends javax.swing.JFrame {
         QueueTitleLamborghini3 = new javax.swing.JLabel();
         QueueLamborghini4 = new javax.swing.JTextField();
         QueueTitleLamborghini4 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -131,6 +140,7 @@ public class GUI extends javax.swing.JFrame {
         BugattiWindow.add(winsTitleBugatti, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 70, 330, -1));
 
         QueueBugatti1.setEditable(false);
+        QueueBugatti1.setBackground(new java.awt.Color(204, 204, 255));
         BugattiWindow.add(QueueBugatti1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 390, 30));
 
         QueueTitleBugatti1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -139,6 +149,7 @@ public class GUI extends javax.swing.JFrame {
         BugattiWindow.add(QueueTitleBugatti1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 350, -1));
 
         QueueBugatti2.setEditable(false);
+        QueueBugatti2.setBackground(new java.awt.Color(204, 204, 255));
         QueueBugatti2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 QueueBugatti2ActionPerformed(evt);
@@ -152,6 +163,7 @@ public class GUI extends javax.swing.JFrame {
         BugattiWindow.add(QueueTitleBugatti2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 350, -1));
 
         QueueBugatti3.setEditable(false);
+        QueueBugatti3.setBackground(new java.awt.Color(204, 204, 255));
         BugattiWindow.add(QueueBugatti3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 390, 390, 30));
 
         QueueTitleBugatti3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -160,12 +172,16 @@ public class GUI extends javax.swing.JFrame {
         BugattiWindow.add(QueueTitleBugatti3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 360, 350, -1));
 
         QueueBugatti4.setEditable(false);
+        QueueBugatti4.setBackground(new java.awt.Color(204, 204, 255));
         BugattiWindow.add(QueueBugatti4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 460, 390, 30));
 
         QueueTitleBugatti4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         QueueTitleBugatti4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         QueueTitleBugatti4.setText("Cola de refuerzo");
         BugattiWindow.add(QueueTitleBugatti4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 430, 350, -1));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/bugattiBackground.png"))); // NOI18N
+        BugattiWindow.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 430, 550));
 
         jPanel1.add(BugattiWindow, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 430, 550));
 
@@ -184,7 +200,7 @@ public class GUI extends javax.swing.JFrame {
                 StopButtonActionPerformed(evt);
             }
         });
-        AIWindow.add(StopButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 170, 130, 30));
+        AIWindow.add(StopButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 170, 70, 30));
 
         AITimeIncrease.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         AITimeIncrease.setText("+");
@@ -205,6 +221,14 @@ public class GUI extends javax.swing.JFrame {
         });
         AIWindow.add(AITimeDecrease, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 120, 50, 30));
 
+        qtyRounds.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        qtyRounds.setText("0");
+        AIWindow.add(qtyRounds, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 170, 60, -1));
+
+        roundsTitle.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        roundsTitle.setText("RONDAS:");
+        AIWindow.add(roundsTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 170, -1, -1));
+
         AIStatus.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         AIStatus.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         AIStatus.setText("Esperando");
@@ -220,6 +244,9 @@ public class GUI extends javax.swing.JFrame {
         AITitle.setText("Inteligencia Artificial");
         AIWindow.add(AITitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 290, 40));
 
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/AIBackground.png"))); // NOI18N
+        AIWindow.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(-3, 0, 320, 210));
+
         jPanel1.add(AIWindow, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 40, 310, 210));
 
         ResultWindowBugatti.setBackground(new java.awt.Color(255, 204, 153));
@@ -234,22 +261,25 @@ public class GUI extends javax.swing.JFrame {
         RacingTimeTitleBugatti.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         RacingTimeTitleBugatti.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         RacingTimeTitleBugatti.setText("Tiempo:");
-        ResultWindowBugatti.add(RacingTimeTitleBugatti, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 70, 30));
+        ResultWindowBugatti.add(RacingTimeTitleBugatti, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 70, 70, 30));
 
         RacingTimeBugatti.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         RacingTimeBugatti.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         RacingTimeBugatti.setText("5 min.");
-        ResultWindowBugatti.add(RacingTimeBugatti, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 70, 70, 30));
+        ResultWindowBugatti.add(RacingTimeBugatti, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 70, 70, 30));
 
         RacingIDTitleBugatti.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         RacingIDTitleBugatti.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         RacingIDTitleBugatti.setText("ID:");
-        ResultWindowBugatti.add(RacingIDTitleBugatti, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 40, 30));
+        ResultWindowBugatti.add(RacingIDTitleBugatti, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 40, 40, 30));
 
         RacingIDBugatti.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         RacingIDBugatti.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         RacingIDBugatti.setText("B8");
-        ResultWindowBugatti.add(RacingIDBugatti, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, 40, 30));
+        ResultWindowBugatti.add(RacingIDBugatti, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 40, 40, 30));
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/orangeBackground.jpg"))); // NOI18N
+        ResultWindowBugatti.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 310, 110));
 
         jPanel1.add(ResultWindowBugatti, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 370, -1, 110));
 
@@ -260,12 +290,18 @@ public class GUI extends javax.swing.JFrame {
         ResultTitle.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         ResultTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         ResultTitle.setText("RESULTADOS");
-        ResultWindow.add(ResultTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 290, 40));
+        ResultWindow.add(ResultTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 290, 40));
 
-        Result.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        Result.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         Result.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Result.setText("Lamborghini ganó");
-        ResultWindow.add(Result, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 290, 40));
+        ResultWindow.add(Result, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 290, 40));
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("(Última Carrera)");
+        ResultWindow.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, 230, -1));
+        ResultWindow.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 310, 120));
 
         jPanel1.add(ResultWindow, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 250, -1, 120));
 
@@ -281,22 +317,25 @@ public class GUI extends javax.swing.JFrame {
         RacingTimeTitleLamborghini.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         RacingTimeTitleLamborghini.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         RacingTimeTitleLamborghini.setText("Tiempo:");
-        ResultWindowLamborghini.add(RacingTimeTitleLamborghini, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 70, 30));
+        ResultWindowLamborghini.add(RacingTimeTitleLamborghini, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 70, 70, 30));
 
         RacingIDTitleLamborghini.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         RacingIDTitleLamborghini.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         RacingIDTitleLamborghini.setText("ID:");
-        ResultWindowLamborghini.add(RacingIDTitleLamborghini, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 40, 30));
+        ResultWindowLamborghini.add(RacingIDTitleLamborghini, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 40, 40, 30));
 
         RacingIDLamborghini.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         RacingIDLamborghini.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         RacingIDLamborghini.setText("B8");
-        ResultWindowLamborghini.add(RacingIDLamborghini, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, 40, 30));
+        ResultWindowLamborghini.add(RacingIDLamborghini, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 40, 40, 30));
 
         RacingTimeLamborghini.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         RacingTimeLamborghini.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         RacingTimeLamborghini.setText("5 min.");
-        ResultWindowLamborghini.add(RacingTimeLamborghini, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 70, 70, 30));
+        ResultWindowLamborghini.add(RacingTimeLamborghini, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 70, 70, 30));
+
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/grayBackground.png"))); // NOI18N
+        ResultWindowLamborghini.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 310, 110));
 
         jPanel1.add(ResultWindowLamborghini, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 480, -1, 110));
 
@@ -321,6 +360,7 @@ public class GUI extends javax.swing.JFrame {
         LamborghiniWindow.add(winsTitleLamborghini, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 70, 330, -1));
 
         QueueLamborghini1.setEditable(false);
+        QueueLamborghini1.setBackground(new java.awt.Color(204, 204, 255));
         LamborghiniWindow.add(QueueLamborghini1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 390, 30));
 
         QueueTitleLamborghini1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -329,6 +369,7 @@ public class GUI extends javax.swing.JFrame {
         LamborghiniWindow.add(QueueTitleLamborghini1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 350, -1));
 
         QueueLamborghini2.setEditable(false);
+        QueueLamborghini2.setBackground(new java.awt.Color(204, 204, 255));
         LamborghiniWindow.add(QueueLamborghini2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, 390, 30));
 
         QueueTitleLamborghini2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -337,6 +378,7 @@ public class GUI extends javax.swing.JFrame {
         LamborghiniWindow.add(QueueTitleLamborghini2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 350, -1));
 
         QueueLamborghini3.setEditable(false);
+        QueueLamborghini3.setBackground(new java.awt.Color(204, 204, 255));
         LamborghiniWindow.add(QueueLamborghini3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 390, 390, 30));
 
         QueueTitleLamborghini3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -345,12 +387,17 @@ public class GUI extends javax.swing.JFrame {
         LamborghiniWindow.add(QueueTitleLamborghini3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 360, 350, -1));
 
         QueueLamborghini4.setEditable(false);
+        QueueLamborghini4.setBackground(new java.awt.Color(204, 204, 255));
         LamborghiniWindow.add(QueueLamborghini4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 460, 390, 30));
 
         QueueTitleLamborghini4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         QueueTitleLamborghini4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         QueueTitleLamborghini4.setText("Cola de refuerzo");
         LamborghiniWindow.add(QueueTitleLamborghini4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 430, 350, -1));
+
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/lamborghiniBackground.png"))); // NOI18N
+        LamborghiniWindow.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 430, 550));
 
         jPanel1.add(LamborghiniWindow, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 40, 430, 550));
 
@@ -780,6 +827,14 @@ public class GUI extends javax.swing.JFrame {
         this.winsTitleLamborghini = winsTitleLamborghini;
     }
 
+    public JLabel getQtyRounds() {
+        return qtyRounds;
+    }
+
+    public void setQtyRounds(JLabel qtyRounds) {
+        this.qtyRounds = qtyRounds;
+    }
+    
     private void StopButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StopButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_StopButtonActionPerformed
@@ -883,7 +938,16 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JButton StopButton;
     private javax.swing.JPanel TitleWindow;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel qtyRounds;
+    private javax.swing.JLabel roundsTitle;
     private javax.swing.JLabel titleBugatti;
     private javax.swing.JLabel titleLamborghini;
     private javax.swing.JLabel winsBugatti;

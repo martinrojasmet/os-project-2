@@ -1,5 +1,7 @@
 package classes;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import primitives.Queue;
 
 /**
@@ -15,6 +17,8 @@ public class Administrator extends Thread {
     private int revisionCycles;
     private int bugattiWins;
     private int lamborghiniWins;
+    private String[] winners;
+    private int totalQtyWins;
 
     public Administrator(AI processor, Plant bugattiPlant, Plant lamborghiniPlant) {
         this.processor = processor;
@@ -25,26 +29,31 @@ public class Administrator extends Thread {
         this.revisionCycles = Utils.revisionCycles;
         this.bugattiWins = 0;
         this.lamborghiniWins = 0;
+        this.totalQtyWins = -1;
+        this.winners = new String[100];
     }
     
     public Vehicle chooseVehicleToRace(Plant plant) {
-        Vehicle vehicle;
+        Vehicle vehicle = null;
         if (!plant.getFirstPriorityQueue().isEmpty()) {
             vehicle = plant.getFirstPriorityQueue().deQueue();
         } else if (!plant.getSecondPriorityQueue().isEmpty()) {
             vehicle = plant.getSecondPriorityQueue().deQueue();
-        } else {
+        } else if (!plant.getThirdPriorityQueue().isEmpty()) {
             vehicle = plant.getThirdPriorityQueue().deQueue();
         }
         return vehicle;
     }
     
     public void raceWin(Vehicle bugatti, Vehicle lamborghini) {
-        if (this.processor.getRaceWinner().getId().equals(bugatti.getId())) {
+        Vehicle winner = this.processor.getRaceWinner();
+        if (winner.getId().equals(bugatti.getId())) {
             this.bugattiWins++;
         } else {
             this.lamborghiniWins++;
         }
+        this.totalQtyWins++;
+        this.winners[this.totalQtyWins] = winner.getId();
     }
     
     public void raceDraw(Vehicle bugatti, Vehicle lamborghini) {
@@ -141,50 +150,49 @@ public class Administrator extends Thread {
         this.revisionCycles = Utils.revisionCycles;
     }
     
+    public void printWinners() {
+        System.out.println("\nWinners:");
+        for (int i=0; i <= this.totalQtyWins; i++) {
+            System.out.println(this.winners[i]);
+        }
+    }
+    
+    public boolean emptyQueues(Plant plant) {
+        return plant.getFirstPriorityQueue().isEmpty() && plant.getSecondPriorityQueue().isEmpty() && plant.getThirdPriorityQueue().isEmpty();
+    }
+    
     @Override
     public void run() {
         while(true) {
-            Vehicle bugatti = chooseVehicleToRace(this.bugattiPlant);
-            Vehicle lamborghini = chooseVehicleToRace(this.lamborghiniPlant);
-            this.processor.race(bugatti, lamborghini);
-            if (this.processor.getRaceStatus().equals(Utils.win)) {
-                raceWin(bugatti, lamborghini);
-            } else if (this.processor.getRaceStatus().equals(Utils.draw)) {
-                raceDraw(bugatti, lamborghini);
-            } else if (this.processor.getRaceStatus().equals(Utils.notAbleToRace)) {
-                notAbleToRace(bugatti, lamborghini);
+            if (!emptyQueues(this.bugattiPlant) && !emptyQueues(this.lamborghiniPlant)) {
+                Vehicle bugatti = chooseVehicleToRace(this.bugattiPlant);
+                Vehicle lamborghini = chooseVehicleToRace(this.lamborghiniPlant);
+                if (bugatti != null && lamborghini != null) {
+                    this.processor.race(bugatti, lamborghini);
+                    if (this.processor.getRaceStatus().equals(Utils.win)) {
+                        raceWin(bugatti, lamborghini);
+                        printWinners();
+                    } else if (this.processor.getRaceStatus().equals(Utils.draw)) {
+                        raceDraw(bugatti, lamborghini);
+                    } else if (this.processor.getRaceStatus().equals(Utils.notAbleToRace)) {
+                        notAbleToRace(bugatti, lamborghini);
+                    }
+                    updateVehicleCounters(this.bugattiPlant);
+                    updateVehicleCounters(this.lamborghiniPlant);
+                    dispatchReinforcementVehicle(this.bugattiPlant);
+                    dispatchReinforcementVehicle(this.lamborghiniPlant);
+                }  
+                
             }
-            updateVehicleCounters(this.bugattiPlant);
-            updateVehicleCounters(this.lamborghiniPlant);
-            dispatchReinforcementVehicle(this.bugattiPlant);
-            dispatchReinforcementVehicle(this.lamborghiniPlant);
+            try {
+                sleep(this.processor.getTimeToProcess() * 1000);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Administrator.class.getName()).log(Level.SEVERE, null, ex);
+            }
             this.revisionCycles--;
             if (this.revisionCycles == 0) {
                 addNewVehicle();
             }
-            
-//            System.out.println("\nRace number " + this.processor.getQtyRounds());
-//            System.out.println("Bugatti wins: " + this.bugattiWins);
-//            System.out.println("Lamborghini wins: " + this.lamborghiniWins);
-//            System.out.println("Lamborghini");
-//            System.out.println("1");
-//            this.lamborghiniPlant.getFirstPriorityQueue().displayCars();
-//            System.out.println("2");
-//            this.lamborghiniPlant.getSecondPriorityQueue().displayCars();
-//            System.out.println("3");
-//            this.lamborghiniPlant.getThirdPriorityQueue().displayCars();
-//            System.out.println("Reinf");
-//            this.lamborghiniPlant.getReinforcementQueue().displayCars();
-//
-//            System.out.println("Bugatti");
-//            System.out.println("1");
-//            this.bugattiPlant.getFirstPriorityQueue().displayCars();
-//            System.out.println("2");
-//            this.bugattiPlant.getSecondPriorityQueue().displayCars();
-//            System.out.println("3");
-//            this.bugattiPlant.getThirdPriorityQueue().displayCars();
-//            System.out.println("Reinf");
-//            this.bugattiPlant.getReinforcementQueue().displayCars();
         }
     }
     
@@ -251,6 +259,22 @@ public class Administrator extends Thread {
 
     public void setLamborghiniWins(int lamborghiniWins) {
         this.lamborghiniWins = lamborghiniWins;
+    }
+
+    public String[] getWinners() {
+        return winners;
+    }
+
+    public void setWinners(String[] winners) {
+        this.winners = winners;
+    }
+
+    public int getTotalQtyWins() {
+        return totalQtyWins;
+    }
+
+    public void setTotalQtyWins(int totalQtyWins) {
+        this.totalQtyWins = totalQtyWins;
     }
     
 }

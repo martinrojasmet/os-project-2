@@ -4,6 +4,7 @@
  */
 package interfaces;
 
+import classes.Utils;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -27,8 +28,13 @@ public class GUIHandler extends Thread{
             this.updateQueues();
             this.updateWins();
             this.updateAIwork();
+            this.updateTime();
+            this.updateCarsInfo();
+            this.updateResult();
+            this.updateRounds();
+            this.generateRandomNumbers();
             try {
-                sleep(100);
+                sleep(20);
             } catch (InterruptedException ex) {
                 Logger.getLogger(GUIHandler.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -74,24 +80,54 @@ public class GUIHandler extends Thread{
         this.gui.getAIStatus().setText(status);
     }
     
-    public void updateTime() { //falta
+    public void updateTime() {
+        int timeToProcess = Integer.parseInt(this.gui.getAITime().getText());
+        this.gui.getRaceSim().getProcessor().setTimeToProcess(timeToProcess);
+    }
+    
+    public void updateCarInfoLamborghini() {
+        String carId = this.gui.getRaceSim().getProcessor().getLamborghiniVehicleRacing().getId();
+        this.gui.getRacingIDLamborghini().setText(carId);
+    }
+    
+    public void updateCarInfoBugatti() {
+        String carId = this.gui.getRaceSim().getProcessor().getBugattiVehicleRacing().getId();
+        this.gui.getRacingIDBugatti().setText(carId);
+    }
+    
+    public void updateCarsInfo() {
+        this.updateCarInfoBugatti();
+        this.updateCarInfoLamborghini();
+    }
+    
+    public void updateRounds() {
+        String qtyRounds = Integer.toString(this.gui.getRaceSim().getProcessor().getQtyRounds());
+        this.gui.getQtyRounds().setText(qtyRounds);
+    }
+    
+    public void stopSimulation() { 
         
     }
     
-    public void updateCarInfoLamborghini() { //falta
-        
+    public void updateResult() {
+        String raceStatus = this.gui.getRaceSim().getProcessor().getRaceStatus();
+        if (raceStatus != null) {
+            if (raceStatus.equals(Utils.win)) {
+                String idWinner = this.gui.getRaceSim().getProcessor().getRaceWinner().getId();
+                this.gui.getResult().setText("Ganador: " + idWinner);
+            } else {
+                this.gui.getResult().setText(raceStatus);
+            }  
+        } else {
+            this.gui.getResult().setText("");
+        }  
     }
     
-    public void updateCarInfoBugatti() { //falta
-        
-    }
-    
-    public void stopSimulation() { //falta
-        
-    }
-    
-    public void updateResult() { //falta
-        
+    public void generateRandomNumbers() {
+        String randomNumber1 = Integer.toString((int) (Math.random() * 360));
+        String randomNumber2 = Integer.toString((int) (Math.random() * 360));
+        this.gui.getRacingTimeBugatti().setText(randomNumber1);
+         this.gui.getRacingTimeLamborghini().setText(randomNumber2);
     }
     
     public boolean isKeepRunning() {
