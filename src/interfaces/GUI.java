@@ -265,7 +265,7 @@ public class GUI extends javax.swing.JFrame {
 
         RacingTimeBugatti.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         RacingTimeBugatti.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        RacingTimeBugatti.setText("5 min.");
+        RacingTimeBugatti.setText("N/A");
         ResultWindowBugatti.add(RacingTimeBugatti, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 70, 70, 30));
 
         RacingIDTitleBugatti.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
@@ -331,7 +331,7 @@ public class GUI extends javax.swing.JFrame {
 
         RacingTimeLamborghini.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         RacingTimeLamborghini.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        RacingTimeLamborghini.setText("5 min.");
+        RacingTimeLamborghini.setText("N/A");
         ResultWindowLamborghini.add(RacingTimeLamborghini, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 70, 70, 30));
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/grayBackground.png"))); // NOI18N
@@ -418,6 +418,78 @@ public class GUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    public GUIHandler getGuiHandler() {
+        return guiHandler;
+    }
+
+    public void setGuiHandler(GUIHandler guiHandler) {
+        this.guiHandler = guiHandler;
+    }
+
+    public JLabel getjLabel2() {
+        return jLabel2;
+    }
+
+    public void setjLabel2(JLabel jLabel2) {
+        this.jLabel2 = jLabel2;
+    }
+
+    public JLabel getjLabel3() {
+        return jLabel3;
+    }
+
+    public void setjLabel3(JLabel jLabel3) {
+        this.jLabel3 = jLabel3;
+    }
+
+    public JLabel getjLabel4() {
+        return jLabel4;
+    }
+
+    public void setjLabel4(JLabel jLabel4) {
+        this.jLabel4 = jLabel4;
+    }
+
+    public JLabel getjLabel5() {
+        return jLabel5;
+    }
+
+    public void setjLabel5(JLabel jLabel5) {
+        this.jLabel5 = jLabel5;
+    }
+
+    public JLabel getjLabel6() {
+        return jLabel6;
+    }
+
+    public void setjLabel6(JLabel jLabel6) {
+        this.jLabel6 = jLabel6;
+    }
+
+    public JLabel getjLabel7() {
+        return jLabel7;
+    }
+
+    public void setjLabel7(JLabel jLabel7) {
+        this.jLabel7 = jLabel7;
+    }
+
+    public JLabel getjLabel8() {
+        return jLabel8;
+    }
+
+    public void setjLabel8(JLabel jLabel8) {
+        this.jLabel8 = jLabel8;
+    }
+
+    public JLabel getRoundsTitle() {
+        return roundsTitle;
+    }
+
+    public void setRoundsTitle(JLabel roundsTitle) {
+        this.roundsTitle = roundsTitle;
+    }
 
     public RaceSimulator getRaceSim() {
         return raceSim;

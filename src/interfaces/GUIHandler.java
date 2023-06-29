@@ -7,6 +7,7 @@ package interfaces;
 import classes.Utils;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -15,11 +16,12 @@ import java.util.logging.Logger;
 public class GUIHandler extends Thread{
     private boolean keepRunning;
     private GUI gui;
+    private int numberOfImage;
 
     public GUIHandler(GUI gui) {
         this.keepRunning = true;
         this.gui = gui;
-        
+        this.numberOfImage = 0;
     }
 
     @Override
@@ -33,6 +35,7 @@ public class GUIHandler extends Thread{
             this.updateResult();
             this.updateRounds();
             this.generateRandomNumbers();
+//            this.updateImageInResult();
             try {
                 sleep(20);
             } catch (InterruptedException ex) {
@@ -115,8 +118,14 @@ public class GUIHandler extends Thread{
             if (raceStatus.equals(Utils.win)) {
                 String idWinner = this.gui.getRaceSim().getProcessor().getRaceWinner().getId();
                 this.gui.getResult().setText("Ganador: " + idWinner);
+                this.setNumberOfWinner(idWinner);
             } else {
                 this.gui.getResult().setText(raceStatus);
+                if (raceStatus.equals(Utils.draw)) {
+                    this.setNumberInTie();
+                } else {
+                    this.setNumberInReinforcement();
+                }
             }  
         } else {
             this.gui.getResult().setText("");
@@ -124,11 +133,50 @@ public class GUIHandler extends Thread{
     }
     
     public void generateRandomNumbers() {
-        String randomNumber1 = Integer.toString((int) (Math.random() * 360));
-        String randomNumber2 = Integer.toString((int) (Math.random() * 360));
-        this.gui.getRacingTimeBugatti().setText(randomNumber1);
-         this.gui.getRacingTimeLamborghini().setText(randomNumber2);
+        if (this.gui.getRaceSim().getProcessor().getStatus().equals(Utils.decidingStatus) || 
+                this.gui.getRaceSim().getProcessor().getStatus().equals(Utils.announcingStatus)) {
+            String randomNumber1 = Integer.toString((int) (Math.random() * 3)+3);
+            String randomNumber2 = Integer.toString((int) (Math.random() * 3)+3);
+            this.gui.getRacingTimeBugatti().setText(randomNumber1);
+            this.gui.getRacingTimeLamborghini().setText(randomNumber2);
+        }
     }
+    
+    public void setNumberOfWinner(String idWinner) {
+        if (idWinner.contains("L")) {
+            this.gui.getRacingTimeBugatti().setText(Utils.timeLoser);
+            this.gui.getRacingTimeLamborghini().setText(Utils.timeWinner);
+        } else {
+            this.gui.getRacingTimeBugatti().setText(Utils.timeWinner);
+            this.gui.getRacingTimeLamborghini().setText(Utils.timeLoser);
+        }
+    }
+    
+    public void setNumberInTie () {
+        this.gui.getRacingTimeBugatti().setText(Utils.timeTie);
+        this.gui.getRacingTimeLamborghini().setText(Utils.timeTie);
+    }
+    
+    public void setNumberInReinforcement() {
+        this.gui.getRacingTimeBugatti().setText(Utils.timeReinforcements);
+        this.gui.getRacingTimeLamborghini().setText(Utils.timeReinforcements);
+    }
+    
+//    public void updateImageInResult() {
+//        ImageIcon iconB = new ImageIcon("src/assets/BugattiResult1.png");
+//        ImageIcon iconL = new ImageIcon("src/assets/LambResult1.png");
+//        if (this.gui.getRaceSim().getProcessor().getStatus().equals(Utils.decidingStatus) || 
+//            this.gui.getRaceSim().getProcessor().getStatus().equals(Utils.announcingStatus)) {
+//            
+////            if (this.numberOfImage ==0) {
+//                this.gui.getjLabel7().setIcon(iconB);
+//                this.numberOfImage = 1;
+////            } else {
+////                this.gui.getjLabel7().setIcon(iconL);
+////                this.numberOfImage = 0;
+////            }
+//        }
+//    }
     
     public boolean isKeepRunning() {
         return keepRunning;

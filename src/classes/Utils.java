@@ -29,4 +29,9 @@ public class Utils {
     public static double leaveReinforcementQueueProbability = 0.4;    
     public static int counterVehicle = 8;
     public static int revisionCycles = 2;
+    
+    public static String timeWinner = "3 min";
+    public static String timeLoser = "6 min";
+    public static String timeTie = "4 min";
+    public static String timeReinforcements = "N/A";
 }

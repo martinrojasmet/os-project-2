@@ -86,27 +86,25 @@ public class Administrator extends Thread {
         // Se actualizan los contadores de los carros de prioridad 2
         if (!secondPriorityQueue.isEmpty()) {
             for (int i = secondPriorityQueue.getFront(); i <= secondPriorityQueue.getRear(); i++) {
+                secondPriority[i].setCounter(secondPriority[i].getCounter() + 1);
                 if (secondPriority[i].getCounter() == Utils.counterVehicle) {
                     Vehicle vehicle = secondPriorityQueue.deQueue();
                     vehicle.setCounter(0);
                     firstPriorityQueue.enQueue(vehicle);
                     i--;
-                } else {
-                    secondPriority[i].setCounter(secondPriority[i].getCounter() + 1);
-                }
+                } 
             } 
         }
         
         // Se actualizan los contadores de los carros de prioridad 3
         if (!thirdPriorityQueue.isEmpty()) {
             for (int i = thirdPriorityQueue.getFront(); i <= thirdPriorityQueue.getRear(); i++) {
+                thirdPriority[i].setCounter(thirdPriority[i].getCounter() + 1);
                 if (thirdPriority[i].getCounter() == Utils.counterVehicle) {
                     Vehicle vehicle = thirdPriorityQueue.deQueue();
                     vehicle.setCounter(0);
                     secondPriorityQueue.enQueue(vehicle);
                     i--;
-                } else {
-                    thirdPriority[i].setCounter(thirdPriority[i].getCounter() + 1);
                 }
             } 
         }
@@ -184,11 +182,11 @@ public class Administrator extends Thread {
                 }  
                 
             }
-            try {
-                sleep(this.processor.getTimeToProcess() * 1000);
-            } catch (InterruptedException ex) {
-                Logger.getLogger(Administrator.class.getName()).log(Level.SEVERE, null, ex);
-            }
+//            try {
+//                sleep(this.processor.getTimeToProcess() * 1000);
+//            } catch (InterruptedException ex) {
+//                Logger.getLogger(Administrator.class.getName()).log(Level.SEVERE, null, ex);
+//            }
             this.revisionCycles--;
             if (this.revisionCycles == 0) {
                 addNewVehicle();
