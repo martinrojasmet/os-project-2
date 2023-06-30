@@ -69,7 +69,7 @@ public class AI extends Thread {
                 }
                 this.qtyRounds++;
                 this.setStatus(Utils.waitingStatus);
-                sleep(2000); //para poder verlo
+                sleep(500); //para poder verlo
 
             } catch (InterruptedException ex) {
                 Logger.getLogger(AI.class.getName()).log(Level.SEVERE, null, ex);

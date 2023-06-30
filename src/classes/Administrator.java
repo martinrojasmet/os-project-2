@@ -180,17 +180,17 @@ public class Administrator extends Thread {
                     dispatchReinforcementVehicle(this.bugattiPlant);
                     dispatchReinforcementVehicle(this.lamborghiniPlant);
                 }  
-                
-            }
-//            try {
-//                sleep(this.processor.getTimeToProcess() * 1000);
-//            } catch (InterruptedException ex) {
-//                Logger.getLogger(Administrator.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-            this.revisionCycles--;
-            if (this.revisionCycles == 0) {
+                this.revisionCycles--;
+                if (this.revisionCycles == 0) {
+                    addNewVehicle();
+                }  
+            } else {
+                // Se agregan mas carros a la carrera
+                addNewVehicle();
+                addNewVehicle();
                 addNewVehicle();
             }
+            
         }
     }
     

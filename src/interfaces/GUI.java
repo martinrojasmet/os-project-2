@@ -61,7 +61,6 @@ public class GUI extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         AIWindow = new javax.swing.JPanel();
         AITime = new javax.swing.JLabel();
-        StopButton = new javax.swing.JButton();
         AITimeIncrease = new javax.swing.JButton();
         AITimeDecrease = new javax.swing.JButton();
         qtyRounds = new javax.swing.JLabel();
@@ -194,14 +193,6 @@ public class GUI extends javax.swing.JFrame {
         AITime.setText("10");
         AIWindow.add(AITime, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 120, 60, 30));
 
-        StopButton.setText("Parar");
-        StopButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                StopButtonActionPerformed(evt);
-            }
-        });
-        AIWindow.add(StopButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 170, 70, 30));
-
         AITimeIncrease.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         AITimeIncrease.setText("+");
         AITimeIncrease.setAlignmentY(0.0F);
@@ -223,11 +214,11 @@ public class GUI extends javax.swing.JFrame {
 
         qtyRounds.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         qtyRounds.setText("0");
-        AIWindow.add(qtyRounds, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 170, 60, -1));
+        AIWindow.add(qtyRounds, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 170, 60, -1));
 
         roundsTitle.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         roundsTitle.setText("RONDAS:");
-        AIWindow.add(roundsTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 170, -1, -1));
+        AIWindow.add(roundsTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 170, -1, -1));
 
         AIStatus.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         AIStatus.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -819,14 +810,6 @@ public class GUI extends javax.swing.JFrame {
         this.ResultWindowLamborghini = ResultWindowLamborghini;
     }
 
-    public JButton getStopButton() {
-        return StopButton;
-    }
-
-    public void setStopButton(JButton StopButton) {
-        this.StopButton = StopButton;
-    }
-
     public JPanel getTitleWindow() {
         return TitleWindow;
     }
@@ -907,10 +890,6 @@ public class GUI extends javax.swing.JFrame {
         this.qtyRounds = qtyRounds;
     }
     
-    private void StopButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StopButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_StopButtonActionPerformed
-
     private void AITimeDecreaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AITimeDecreaseActionPerformed
         if (Integer.parseInt(this.AITime.getText()) > 1) {
             int result = Integer.parseInt(this.AITime.getText());
@@ -1007,7 +986,6 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JPanel ResultWindow;
     private javax.swing.JPanel ResultWindowBugatti;
     private javax.swing.JPanel ResultWindowLamborghini;
-    private javax.swing.JButton StopButton;
     private javax.swing.JPanel TitleWindow;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
